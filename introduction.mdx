@@ -69,3 +69,26 @@ Update your docs to your brand and add valuable content for the best user conver
     Check out our showcase of our favorite documentation
   </Card>
 </CardGroup>
+
+## Infra-Setup Terraform
+
+Infrastructure as Code (IaC)  
+Manage Sei Infrastructure via Terraform.  
+Repository: https://github.com/Sei-Right/iac
+
+### Pre-Requisites
+Login to ECR:
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 166560115894.dkr.ecr.us-east-1.amazonaws.com
+
+### AWS Profile Configuration
+Ensure an AWS profile for the desired environment (e.g., staging) is set in ~/.aws/config.
+
+### Usage
+Navigate to the project directory (currently there's 1 project only - sei).  
+Run:
+./devops <environment> tf <phase> plan|apply
+
+### Updating Secrets
+To update a secret for any K8S service:
+1. Update the value in AWS Secrets Manager.
+2. Apply the phase for the service in Terraform (e.g. ./devops production tf voice-agents apply)
